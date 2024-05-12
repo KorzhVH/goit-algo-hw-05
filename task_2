@@ -1,0 +1,31 @@
+from random import random
+
+
+def binary_search(arr, x):
+    low = 0
+    high = len(arr) - 1
+    steps_count = 0
+    if arr[low] > x:
+        return [steps_count, arr[low]]
+
+    while low < high:
+        if low + 1 == high and low < x < high:
+            return [steps_count, arr[high]]
+        mid = (high + low) // 2
+        if arr[mid] < x:
+            low = mid + 1
+            steps_count += 1
+        elif arr[mid] > x:
+            if arr[mid - 1] < x:
+                return [steps_count, arr[mid]]
+            else:
+                high = mid - 1
+                steps_count += 1
+        else:
+            return [steps_count, arr[mid]]
+    return -1
+
+
+array = sorted([random() for _ in range(100)])
+key = 0.3
+print(binary_search(array, key))
