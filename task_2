@@ -13,8 +13,11 @@ def binary_search(arr, x):
             return [steps_count, arr[high]]
         mid = (high + low) // 2
         if arr[mid] < x:
-            low = mid + 1
-            steps_count += 1
+            if arr[mid + 1] > x:
+                return [steps_count, arr[mid+1]]
+            else:
+                low = mid + 1
+                steps_count += 1
         elif arr[mid] > x:
             if arr[mid - 1] < x:
                 return [steps_count, arr[mid]]
